@@ -1,10 +1,10 @@
 FROM spurin/container-systemd-sshd-ttyd:ubuntu_21.04
 
-# Install editors and common utilities, openssl (needed for the healthcheck script)
+# Install editors and common utilities, openssl (for the healthcheck script)
 RUN apt-get update \
     && apt-get install -y vim nano \
-    iproute2 iputils-ping git net-tools lsof unzip \
     openssl \
+    iproute2 iputils-ping git net-tools lsof unzip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
