@@ -1,4 +1,4 @@
-FROM spurin/container-systemd-sshd-ttyd:centos_stream9
+FROM spurin/container-systemd-sshd-ttyd:centos_8
 
 # Install editors and common utilities, openssl (needed for healthcheck script)
 RUN yum install -y vim nano \
