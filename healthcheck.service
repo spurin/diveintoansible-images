@@ -1,0 +1,11 @@
+[Unit]
+Description=Healthcheck service
+After=startup.service
+
+[Service]
+Type=oneshot
+ExecStart=/utils/healthcheck.sh
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target
