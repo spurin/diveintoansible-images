@@ -12,3 +12,9 @@ COPY healthcheck.service /lib/systemd/system/healthcheck.service
 
 # Enable healthcheck service
 RUN ln -s /lib/systemd/system/healthcheck.service /etc/systemd/system/multi-user.target.wants/healthcheck.service
+
+# Configure sshd to run on port 2222
+RUN sed -ri 's/^#Port 22/Port 2222/' /etc/ssh/sshd_config
+
+# Open Ports
+EXPOSE 2222
