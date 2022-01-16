@@ -1,14 +1,7 @@
-FROM spurin/container-systemd-sshd-ttyd:centos_stream9
+FROM docker:dind
 
-# Install editors and common utilities, openssl (needed for healthcheck script)
-RUN yum install -y vim nano \
-    openssl \
-    diffutils iputils git net-tools lsof unzip \
-    && yum clean all
+ENV DOCKER_TLS_CERTDIR=
 
-# Copy healthcheck script and service
-COPY healthcheck.sh /utils/healthcheck.sh
-COPY healthcheck.service /lib/systemd/system/healthcheck.service
-
-# Enable healthcheck service
-RUN ln -s /lib/systemd/system/healthcheck.service /etc/systemd/system/multi-user.target.wants/healthcheck.service
+# Redirect logs to a file
+RUN sed -ri 's/exec "\$@\"/exec "\$@\" > \/var\/log\/docker.log 2>\&1/g' /usr/local/bin/dockerd-entrypoint.sh
+RUN sed -ri 's/exec "\$@\"/exec "\$@\" > \/var\/log\/docker.log 2>\&1/g' /usr/local/bin/docker-entrypoint.sh
