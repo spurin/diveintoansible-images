@@ -1,5 +1,8 @@
 ## Dive Into Ansible Images
 
+[![Follow](https://shields.io/twitter/follow/jamesspurin?label=Follow)](https://twitter.com/jamesspurin)
+[![GitHub Stars](https://shields.io/docker/pulls/spurin/diveintoansible)](https://hub.docker.com/r/spurin/diveintoansible)
+
 ✨ This repository provides the container sources for DiveInto.com's 'Dive Into Ansible' lab ✨
 
 The related lab is available at - https://github.com/spurin/diveintoansible-lab
