@@ -20,7 +20,7 @@ RUN ln -s /lib/systemd/system/healthcheck.service /etc/systemd/system/multi-user
 COPY .vimrc /etc/skel
 
 # Install ansible, using pip
-RUN pip3 install ansible==5.3.0
+RUN pip3 install ansible==5.5.0
 
 # Patch Ansible, so that the SSH control_path is using /dev/shm by default, rather than ~/.ansible/cp
 # When running a container, this issue relates to a problem with overlayfs.  Without this patch, updates to ansible.cfg are required.
