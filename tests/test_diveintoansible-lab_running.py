@@ -77,6 +77,10 @@ def initial_setup():
     os.system("ssh -o StrictHostKeyChecking=no centos1 'echo Port 2222 >> /etc/ssh/sshd_config' >/dev/null 2>&1")
     os.system("ssh -o StrictHostKeyChecking=no centos1 systemctl restart sshd")
 
+    # Number the following playbooks for sorting purposes (as one is dependent on the other)
+    os.system("mv /home/ansible/diveintoansible/Ansible\ Playbooks\,\ Deep\ Dive/Playbook\ Modules/06/run_webserver_playbook.yaml /home/ansible/diveintoansible/Ansible\ Playbooks\,\ Deep\ Dive/Playbook\ Modules/06/01_run_webserver_playbook.yaml")
+    os.system("mv /home/ansible/diveintoansible/Ansible\ Playbooks\,\ Deep\ Dive/Playbook\ Modules/06/wait_for_playbook.yaml /home/ansible/diveintoansible/Ansible\ Playbooks\,\ Deep\ Dive/Playbook\ Modules/06/02_wait_for_playbook.yaml")
+
 # Run initial_setup as priority
 initial_setup()
 
@@ -84,8 +88,8 @@ initial_setup()
 def get_playbooks():
     # Set the directory you want to start from
     rootDir = "."
-    for dirName, subdirList, fileList in os.walk("/home/ansible/diveintoansible"):
-        for fname in fileList:
+    for dirName, subdirList, fileList in sorted(os.walk("/home/ansible/diveintoansible")):
+        for fname in sorted(fileList):
             # A playbook will be in a directory with hosts, hosts.yaml or hosts.json
             if (
                 os.path.isfile(dirName + "/hosts")
