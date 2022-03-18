@@ -4,6 +4,7 @@ import unittest
 import os
 import socket
 import git
+import time
 from parameterized import parameterized
 from shutil import copyfile
 
@@ -20,11 +21,18 @@ pairs = []
 
 
 def initial_setup():
+    # Grace period for containers to start all services before testing
+    time.sleep(60)
+
     # Clone Repo
     os.system("rm -rf /home/ansible/diveintoansible")
     git.Repo.clone_from(
-        "https://github.com/spurin/diveintoansible.git", "/home/ansible/diveintoansible"
+        "https://github.com/spurin/diveintoansible.git", "/tmp/diveintoansible"
     )
+
+    # Clone to /tmp then move
+    # https://superuser.com/questions/991832/git-clone-error-chmod-on-ntfs-mount-failed-operation-not-permitted
+    os.system("mv /tmp/diveintoansible /home/ansible/diveintoansible 2>/dev/null")
 
     # Extract course updates / fixes for tests
     os.system("tar xPf /tests/required_updates.tar")
