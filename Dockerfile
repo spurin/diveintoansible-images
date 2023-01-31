@@ -1,4 +1,4 @@
-FROM spurin/container-systemd-sshd-ttyd:ubuntu_20.04
+FROM spurin/container-systemd-sshd-ttyd:ubuntu_22.04
 
 # Install editors and common utilities, openssl (for the healthcheck script), python and associated build utilities
 RUN apt-get update \
@@ -20,7 +20,7 @@ RUN ln -s /lib/systemd/system/healthcheck.service /etc/systemd/system/multi-user
 COPY .vimrc /etc/skel
 
 # Install ansible, using pip
-RUN pip3 install ansible==5.5.0
+RUN pip3 install ansible==7.1.0 passlib
 
 # Patch Ansible, so that the SSH control_path is using /dev/shm by default, rather than ~/.ansible/cp
 # When running a container, this issue relates to a problem with overlayfs.  Without this patch, updates to ansible.cfg are required.
