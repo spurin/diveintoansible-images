@@ -1,9 +1,11 @@
 FROM spurin/container-systemd-sshd-ttyd:centos_8
 
 # Install editors and common utilities, openssl (needed for healthcheck script)
+## python3 added to satisfy python dependency for remote module execution
 RUN yum install -y vim nano \
     openssl \
     diffutils iputils git net-tools lsof unzip \
+    python3 \
     && yum clean all
 
 # Copy healthcheck script and service
