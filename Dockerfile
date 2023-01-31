@@ -1,4 +1,4 @@
-FROM spurin/container-systemd-sshd-ttyd:ubuntu_20.04
+FROM spurin/container-systemd-sshd-ttyd:ubuntu_22.04
 
 # Install editors and common utilities, openssl (for the healthcheck script)
 RUN apt-get update \
