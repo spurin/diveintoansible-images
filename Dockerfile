@@ -20,3 +20,6 @@ RUN mkdir /shared && chmod 777 /shared
 
 # Friendly .vimrc starter
 COPY .vimrc /etc/skel
+
+# Disable getty@tty1.service
+RUN systemctl disable getty@tty1.service && systemctl mask getty@tty1.service
